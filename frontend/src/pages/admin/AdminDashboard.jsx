@@ -33,9 +33,9 @@ const AdminDashboard = () => {
       }
 
       console.log("🔄 Fetching admin dashboard stats...");
-      
-      const res = await fetch("http://localhost:5000/api/admin/dashboard", {
-        headers: { 
+
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/admin/dashboard`, {
+        headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
