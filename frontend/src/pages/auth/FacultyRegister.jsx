@@ -287,25 +287,25 @@ export default function FacilityRegisterForm() {
     ...formData,
     
     // IMPORTANT: Keep the facilityType field as the original capitalized value.
-    facilityType: roleSlug, 
-    
+    facilityType: roleSlug,
+
     // Set the role field to the required slug format.
-    role: roleSlug, 
+    role: roleSlug,
   };
-    
+
     // **YOUR TARGET URL**
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'; 
-    
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
    console.log("Submitting Data to Backend:", submissionPayload); // Use the new payload
 
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       // ⭐️ Use the constructed payload here
-      body: JSON.stringify(submissionPayload), 
+      body: JSON.stringify(submissionPayload),
     });
       
       // Check if the response status is 2xx (Success)

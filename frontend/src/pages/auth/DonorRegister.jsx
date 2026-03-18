@@ -274,14 +274,13 @@ export default function DonorRegisterForm() {
       address: formData.address,
       role: "donor",
     };
-    
-        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'; 
 
-    
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
     console.log("Submitting Donor Data:", submissionPayload);
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
