@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   Droplet,
@@ -27,6 +28,7 @@ import { toast } from "react-hot-toast";
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const DonorDashboard = () => {
+  const navigate = useNavigate();
   const [dashboard, setDashboard] = useState(null);
   const [donor, setDonor] = useState(null);
   const [history, setHistory] = useState([]);
@@ -47,13 +49,13 @@ const DonorDashboard = () => {
       console.log("📡 Making API requests...");
 
       const [profileRes, historyRes, statsRes] = await Promise.all([
-        axios.get(`${API_URL}/profile`, {
+        axios.get(`${API_URL}/donor/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get(`${API_URL}/history`, {
+        axios.get(`${API_URL}/donor/history`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get(`${API_URL}/stats`, {
+        axios.get(`${API_URL}/donor/stats`, {
           headers: { Authorization: `Bearer ${token}` },
         }).catch(() => ({ data: {} })), // Fallback if stats endpoint doesn't exist
       ]);
@@ -294,7 +296,7 @@ const DonorDashboard = () => {
               icon={<Droplet className="w-8 h-8" />}
               message="No donation history yet"
               actionText="Make your first donation"
-              onAction={() => toast.success("Find nearby blood camps to get started!")}
+              onAction={() => navigate("/donor/camps")}
             />
           )}
         </Section>
@@ -346,7 +348,7 @@ const DonorDashboard = () => {
             icon={<Calendar className="w-5 h-5" />}
             title="Schedule Donation"
             description="Book your next donation"
-            onClick={() => toast.success("Find nearby blood donation camps!")}
+            onClick={() => navigate("/donor/camps")}
             color="red"
           />
           <ActionCard
