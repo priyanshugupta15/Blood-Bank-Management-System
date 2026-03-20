@@ -338,12 +338,14 @@ npm run dev
 
 ## Screenshots
 
-> Add screenshots of your application here:
-> - Landing page
-> - Login/Register pages
-> - Admin dashboard
-> - User dashboard
-> - Blood inventory page
+### Landing Page
+![Landing Page](frontend/screenshots/landingpage.png)
+
+### Login Page
+![Login Page](frontend/screenshots/login.png)
+
+### Donor Dashboard
+![Donor Dashboard](frontend/donot.png)
 
 ---
 
